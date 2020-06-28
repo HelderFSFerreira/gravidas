@@ -1,8 +1,6 @@
-import { Link } from "gatsby";
 import React from "react";
 import Helmet from "react-helmet";
 import { Waypoint } from "react-waypoint";
-import pic01 from "../assets/images/pic01.jpg";
 import Header from "../components/Header";
 import Layout from "../components/layout";
 import Nav from "../components/Nav";
@@ -23,10 +21,12 @@ class Index extends React.Component {
 
   _handleWaypointEnter = () => {
     this.setState(() => ({ stickyNav: false }));
+    console.log("false");
   };
 
   _handleWaypointLeave = () => {
     this.setState(() => ({ stickyNav: true }));
+    console.log("true");
   };
 
   render() {
@@ -55,7 +55,6 @@ class Index extends React.Component {
             <Contacts />
           </section>
         </div>
-
         <Button variant="dark"></Button>
       </Layout>
     );

@@ -1,42 +1,46 @@
 //import React, { setState } from "react";
 import React from "react";
-
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import "../assets/css/custom.css";
 
 class Dates extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      disabled: false,
-      menstruationDate: "",
-    };
   }
 
-  /* _handleWaypointEnter = () => {
-    this.setState(() => ({ stickyNav: false }));
+  state = {
+    menstruationDate: new Date(),
+    ecographyDate: new Date(),
+    weeks: 0,
+    days: 0,
+    disabled: false,
   };
-
-  _handleWaypointLeave = () => {
-    this.setState(() => ({ stickyNav: true }));
-  }; */
 
   menstruationChange(e) {
     var date = e.target.value;
     this.setState({ menstruationDate: date });
+    this.setState({ ecographyDate: "" });
+    this.setState({ weeks: 0 });
+    this.setState({ days: 0 });
+
     date
       ? this.setState({ disabled: true })
       : this.setState({ disabled: false });
   }
   ecographyChange(e) {
-    console.log(e.target.value);
+    var date = e.target.value;
+    this.setState({ menstruationDate: "" });
+    this.setState({ ecographyDate: date });
   }
   weeksChange(e) {
-    console.log(e.target.value);
+    var weeks = e.target.value;
+    weeks > 53 ? this.setState({ weeks: 53 }) : this.setState({ weeks: weeks });
   }
 
   daysChange(e) {
-    console.log(e.target.value);
+    var days = e.target.value;
+    days > 7 ? this.setState({ days: 7 }) : this.setState({ days: days });
   }
 
   render() {
@@ -53,6 +57,7 @@ class Dates extends React.Component {
               <p>
                 <input
                   type="date"
+                  value={this.state.menstruationDate}
                   onChange={this.menstruationChange.bind(this)}
                 />
               </p>
@@ -61,22 +66,23 @@ class Dates extends React.Component {
               <h3>Ecografia</h3>
               <input
                 type="date"
+                value={this.state.ecographyDate}
                 onChange={this.ecographyChange.bind(this)}
-                disable={this.state.disabled.value}
+                disabled={this.state.disabled}
               />
               <h4>Semanas</h4>
               <input
                 type="number"
-                max="53"
+                value={this.state.weeks}
                 onChange={this.weeksChange.bind(this)}
-                disable={this.state.disabled.value}
+                disabled={this.state.disabled}
               ></input>
               <h4>Dias</h4>
               <input
                 type="number"
-                max="7"
+                value={this.state.days}
                 onChange={this.daysChange.bind(this)}
-                disable={this.state.disabled.value}
+                disabled={this.state.disabled}
               ></input>
             </Col>
           </Row>
