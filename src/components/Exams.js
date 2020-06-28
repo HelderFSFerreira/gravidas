@@ -23,7 +23,7 @@ class Exams extends React.Component {
     return (
       <div>
         <header className="major">
-          <h2>Exames e Ecografias</h2>
+          <h2>Exames</h2>
           <h3> Ecografias</h3>
           <Table responsive>
             <tbody>
