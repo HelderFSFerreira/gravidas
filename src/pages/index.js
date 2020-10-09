@@ -5,13 +5,14 @@ import Header from "../components/Header";
 import Layout from "../components/layout";
 import Nav from "../components/Nav";
 import Dates from "../components/Dates";
-import Tests from "../components/Tests";
+import Ecos from "../components/Ecos";
 import Exams from "../components/Exams";
 import Contacts from "../components/Contacts";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { Button } from "react-bootstrap";
+import Constants from "../config/";
 
 class Index extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -24,26 +25,10 @@ class Index extends React.Component {
         days: 0,
         disabled: false,
       },
-      exams: [{
-        status: null,
-        desc: 'Eco 1o Trimestre',
-        since: 11,
-        until: 13
-      },
-      {
-        status: null,
-        desc: 'Eco 2o Trimestre',
-        since: 24,
-        until: 28
-      },
-      {
-        status: null,
-        desc: 'Eco 3o Trimestre',
-        since: 32,
-        until: 34
-      }
-    ]
+      ecos: Constants.ecos,
+      exams: Constants.exams
     };
+
   }
 
   _handleWaypointEnter = () => {
@@ -62,9 +47,9 @@ class Index extends React.Component {
     let initialDate;
 
     const changedInput = e.target.id;
-    // const changedValue = e.target.value;
+    const changedValue = e.target.value;
     
-    currentDates[e.target.id]= e.target.value;
+    currentDates[changedInput]= changedValue;
 
 
     if (changedInput === 'menstruationDate') {
@@ -102,10 +87,10 @@ class Index extends React.Component {
             />
           </section>
           <section id="first" className="main special">
-            <Tests value={this.state.exams} />
+            <Ecos value={this.state.ecos} />
           </section>
           <section id="second" className="main special">
-            <Exams />
+            <Exams value={this.state.exams}/>
           </section>
 
           <section id="cta" className="main special">

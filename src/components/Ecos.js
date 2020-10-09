@@ -1,24 +1,13 @@
 import React from "react";
-import { Link } from "gatsby";
+import Constants from '../config/'
 
-// const Tests = (props) => (
-//   <div>
-//     <header className="major">
-//       <h2>Análises e Ecografias</h2>
-//     </header>
-//     <ul className="features"></ul>
-//   </div>
-// );
-
-
-
-class Tests extends React.Component {
+class Ecos extends React.Component {
 
   render() {
     return (
       <div>
         <header className="major">
-          <h2>Análises e Ecografias</h2>
+          <h2>Ecografias</h2>
         </header>
         <table id='exams'>
           <thead>
@@ -35,19 +24,21 @@ class Tests extends React.Component {
   renderTableHead() {
     return (
       <tr>
-        <th>Descrição</th>
-        <th>Incio</th>
-        <th>Fim</th>
+        <th>{Constants.tableHeaderDesc.status}</th>
+        <th>{Constants.tableHeaderDesc.desc}</th>
+        <th>{Constants.tableHeaderDesc.start}</th>
+        <th>{Constants.tableHeaderDesc.end}</th>
       </tr>
     )
   }
 
   renderTableWithData() {
     return this.props.value.map((exam,index) => {
-      const { desc, since, until} = exam;
+      const {status, desc, since, until} = exam;
       
       return (
         <tr key={index}>
+          <td>{status}</td>
           <td>{desc}</td>
           <td>{since}</td>
           <td>{until}</td>
@@ -55,7 +46,6 @@ class Tests extends React.Component {
       )
     })
   }
-
 }
 
-export default Tests;
+export default Ecos;
