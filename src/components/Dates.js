@@ -1,44 +1,10 @@
 //import React, { setState } from "react";
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/custom.css";
 
 class Dates extends React.Component {
-
-  // state = {
-  //   menstruationDate: new Date(),
-  //   ecographyDate: new Date(),
-  //   weeks: 0,
-  //   days: 0,
-  //   disabled: false,
-  // };
-
-  // menstruationChange(e) {
-  //   var date = e.target.value;
-  //   this.setState({ menstruationDate: date });
-  //   this.setState({ ecographyDate: "" });
-  //   this.setState({ weeks: 0 });
-  //   this.setState({ days: 0 });
-
-  //   date
-  //     ? this.setState({ disabled: true })
-  //     : this.setState({ disabled: false });
-  // }
-  // ecographyChange(e) {
-  //   var date = e.target.value;
-  //   this.setState({ menstruationDate: "" });
-  //   this.setState({ ecographyDate: date });
-  // }
-  // weeksChange(e) {
-  //   var weeks = e.target.value;
-  //   weeks > 53 ? this.setState({ weeks: 53 }) : this.setState({ weeks: weeks });
-  // }
-
-  // daysChange(e) {
-  //   var days = e.target.value;
-  //   days > 7 ? this.setState({ days: 7 }) : this.setState({ days: days });
-  // }
 
   render() {
     return (

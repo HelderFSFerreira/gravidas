@@ -1,5 +1,7 @@
 import React from "react";
 import Constants from '../config/'
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 class Ecos extends React.Component {
 
@@ -39,6 +41,7 @@ class Ecos extends React.Component {
       return (
         <tr key={index}>
           <td>{status}</td>
+          {/* <td><DoneAllIcon/></td> */}
           <td>{desc}</td>
           <td>{since}</td>
           <td>{until}</td>

@@ -63,10 +63,16 @@ class Index extends React.Component {
     const diffDate = new Date() - initialDate;
     gestationWeek = Math.floor(diffDate / (1000 * 60 * 60 * 24 * 7));
 
+    this.getEcosByWeeks(gestationWeek);
+
     this.setState({
       dates: currentDates,
       gestationWeek: gestationWeek,
     })
+  }
+
+  getEcosByWeeks(gestationWeek) {
+    console.log(gestationWeek);
   }
 
   render() {

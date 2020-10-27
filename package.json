@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "author": "Hunter Chang",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@popperjs/core": "^2.4.2",
     "bootstrap": "^4.5.0",
-    "gatsby": "^2.19.32",
+    "gatsby": "^2.24.80",
     "gatsby-plugin-manifest": "^2.2.44",
     "gatsby-plugin-offline": "^3.0.37",
     "gatsby-plugin-react-helmet": "^3.1.23",
