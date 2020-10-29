@@ -72,7 +72,35 @@ class Index extends React.Component {
   }
 
   getEcosByWeeks(gestationWeek) {
-    console.log(gestationWeek);
+
+    let ecosToShow = [];
+
+    for (let i = 0; i < Constants.ecos.length; i++) {
+      const eco = Constants.ecos[i];
+      
+      // if ( parseInt(eco.until) >= parseInt(gestationWeek) ) {
+      //   eco.status = 'done'
+        
+      //   if (eco.until <= gestationWeek ) {
+      //     eco.status = 'request'
+      //   }
+      //   ecosToShow.push(eco);
+      // }
+
+      if (gestationWeek < eco.since) {
+        eco.status = 'request'
+
+        if (gestationWeek > eco.until) {
+          eco.status = 'done'
+        }
+        ecosToShow.push(eco);
+      }
+    }
+
+
+    this.setState({
+      ecos: ecosToShow
+    })
   }
 
   render() {
