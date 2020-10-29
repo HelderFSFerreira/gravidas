@@ -77,15 +77,6 @@ class Index extends React.Component {
 
     for (let i = 0; i < Constants.ecos.length; i++) {
       const eco = Constants.ecos[i];
-      
-      // if ( parseInt(eco.until) >= parseInt(gestationWeek) ) {
-      //   eco.status = 'done'
-        
-      //   if (eco.until <= gestationWeek ) {
-      //     eco.status = 'request'
-      //   }
-      //   ecosToShow.push(eco);
-      // }
 
       if (gestationWeek < eco.since) {
         eco.status = 'request'
