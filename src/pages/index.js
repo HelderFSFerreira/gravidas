@@ -64,6 +64,7 @@ class Index extends React.Component {
     gestationWeek = Math.floor(diffDate / (1000 * 60 * 60 * 24 * 7));
 
     this.getEcosByWeeks(gestationWeek);
+    this.getExamsByWeeks(gestationWeek);
 
     this.setState({
       dates: currentDates,
@@ -72,8 +73,8 @@ class Index extends React.Component {
   }
 
   getEcosByWeeks(gestationWeek) {
-
     let ecosToShow = [];
+    console.log(gestationWeek);
 
     for (let i = 0; i < Constants.ecos.length; i++) {
       const eco = Constants.ecos[i];
@@ -88,10 +89,28 @@ class Index extends React.Component {
       }
     }
 
-
     this.setState({
       ecos: ecosToShow
     })
+  }
+
+  getExamsByWeeks(gestationWeek) {
+    let examsToShow= [];
+
+    for (let i = 0; i < Constants.exams.length; i++) {
+      const exam = Constants.exams[i];
+      if (gestationWeek < exam.since) {
+        exam.status = 'request'
+
+        if (gestationWeek > exam.until) {
+          exam.status = 'done'
+        }
+        examsToShow.push(exam);
+      }
+      this.setState({
+        exams: examsToShow
+      })
+    }
   }
 
   render() {
