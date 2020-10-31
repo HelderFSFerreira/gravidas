@@ -40,14 +40,25 @@ class Ecos extends React.Component {
       
       return (
         <tr key={index}>
-          <td>{status}</td>
-          {/* <td><DoneAllIcon/></td> */}
+          <td>{this.renderIcon(status)}</td>
           <td>{desc}</td>
           <td>{since}</td>
           <td>{until}</td>
         </tr>
       )
     })
+  }
+
+  renderIcon(status) {
+    console.log(status);
+    switch (status) {
+      case 'request':
+        return <AssignmentTurnedInIcon/>
+      case 'done':
+        return <DoneAllIcon/>;
+      default:
+        return <AssignmentTurnedInIcon/>
+    }
   }
 }
 

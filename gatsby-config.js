@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Starter - Stellar by HTML5 UP",
-    author: "Hunter Chang",
-    description: "A Gatsby.js Starter based on Stellar by HTML5 UP"
+    title: "Planeamento de gravidez",
+    author: "Helder Ferreira | Luis Marques",
+    description: "Ajuda no planeamento de exames e ecografias durante a gravidez"
   },
   plugins: [
     'gatsby-plugin-react-helmet',

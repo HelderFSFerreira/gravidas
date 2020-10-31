@@ -10,6 +10,7 @@ import Exams from "../components/Exams";
 import Contacts from "../components/Contacts";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Constants from "../config/";
+import GatsbyConfig from '../../gatsby-config.js';
 
 class Index extends React.Component {
   
@@ -116,7 +117,8 @@ class Index extends React.Component {
   render() {
     return (
       <Layout>
-        <Helmet title="Gatsby Starter - Stellar" />
+        {/* <Helmet title="Gatsby Starter - Stellar" /> */}
+        <Helmet title = {GatsbyConfig.siteMetadata.title} />
         <Header />
         <Waypoint
           onEnter={this._handleWaypointEnter}
