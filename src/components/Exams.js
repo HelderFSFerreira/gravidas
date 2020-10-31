@@ -1,5 +1,7 @@
 import React from "react";
-import Constants from '../config/'
+import Constants from '../config/';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 class Exams extends React.Component {
 
@@ -38,13 +40,25 @@ class Exams extends React.Component {
       
       return (
         <tr key={index}>
-          <td>{status}</td>
+          <td>{this.renderIcon(status)}</td>
           <td>{desc}</td>
           <td>{since}</td>
           <td>{until}</td>
         </tr>
       )
     });
+  }
+
+  renderIcon(status) {
+    console.log(status);
+    switch (status) {
+      case 'request':
+        return <AssignmentTurnedInIcon/>
+      case 'done':
+        return <DoneAllIcon/>;
+      default:
+        return <AssignmentTurnedInIcon/>
+    }
   }
 }
 
