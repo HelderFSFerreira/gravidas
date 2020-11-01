@@ -44,6 +44,18 @@ class Exams extends React.Component {
       )
     });
   }
+
+  renderIcon(status) {
+    console.log(status);
+    switch (status) {
+      case 'request':
+        return <AssignmentTurnedInIcon/>
+      case 'done':
+        return <DoneAllIcon/>;
+      default:
+        return <AssignmentTurnedInIcon/>
+    }
+  }
 }
 
 

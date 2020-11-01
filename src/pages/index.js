@@ -9,7 +9,11 @@ import Ecos from "../components/Ecos";
 import Exams from "../components/Exams";
 import Contacts from "../components/Contacts";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import Constants, { ecos } from "../config/";
+=======
+import Constants from "../config/";
+>>>>>>> bfda012e10b277aa210935fc329362f199d0faf2
 import GatsbyConfig from '../../gatsby-config.js';
 
 class Index extends React.Component {
