@@ -9,7 +9,7 @@ import Ecos from "../components/Ecos";
 import Exams from "../components/Exams";
 import Contacts from "../components/Contacts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Constants from "../config/";
+import Constants, { ecos } from "../config/";
 import GatsbyConfig from '../../gatsby-config.js';
 
 class Index extends React.Component {
@@ -61,11 +61,16 @@ class Index extends React.Component {
       initialDate.setDate(ecoDate.getDate() - (7 * currentDates.weeks || 0) - (currentDates.days || 0));
     }
 
+    this.getEcosByInitialDate(initialDate);
+    this.getExamsByInitialDate(initialDate);
+
     const diffDate = new Date() - initialDate;
     gestationWeek = Math.floor(diffDate / (1000 * 60 * 60 * 24 * 7));
 
-    this.getEcosByWeeks(gestationWeek);
-    this.getExamsByWeeks(gestationWeek);
+    this.getEcosByInitialDate(initialDate);
+
+    // this.getEcosByWeeks(gestationWeek);
+    // this.getExamsByWeeks(gestationWeek);
 
     this.setState({
       dates: currentDates,
@@ -73,51 +78,107 @@ class Index extends React.Component {
     })
   }
 
-  getEcosByWeeks(gestationWeek) {
-    let ecosToShow = [];
-    console.log(gestationWeek);
+  getEcosByInitialDate(initialDate) {
+    let ecosWithFinalDates = [];
 
     for (let i = 0; i < Constants.ecos.length; i++) {
       const eco = Constants.ecos[i];
+      let dateSince = new Date();
+      dateSince.setDate(initialDate.getDate() + 7 * eco.since.weeks + (eco.since.days || 0));
+      eco.since.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+      
+      let dateUntil = new Date();
+      dateUntil.setDate(initialDate.getDate() + 7 * eco.until.weeks + (eco.until.days || 0));
+      eco.until.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
 
-      if (gestationWeek < eco.since) {
-        eco.status = 'request'
-
-        if (gestationWeek > eco.until) {
-          eco.status = 'done'
-        }
-        ecosToShow.push(eco);
-      }
+      ecosWithFinalDates.push(eco);
+      
     }
-
+    
     this.setState({
-      ecos: ecosToShow
+      ecos: ecosWithFinalDates
     })
   }
 
-  getExamsByWeeks(gestationWeek) {
-    let examsToShow= [];
+  getExamsByInitialDate(initialDate) {
+    let examsWithFinalDates = [];
 
     for (let i = 0; i < Constants.exams.length; i++) {
       const exam = Constants.exams[i];
-      if (gestationWeek < exam.since) {
-        exam.status = 'request'
+      let dateSince = new Date();
+      dateSince.setDate(initialDate.getDate() + 7 * exam.since.weeks + (exam.since.days || 0));
+      exam.since.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+      
+      let dateUntil = new Date();
+      dateUntil.setDate(initialDate.getDate() + 7 * exam.until.weeks + (exam.until.days || 0));
+      exam.until.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
 
-        if (gestationWeek > exam.until) {
-          exam.status = 'done'
-        }
-        examsToShow.push(exam);
-      }
-      this.setState({
-        exams: examsToShow
-      })
+      examsWithFinalDates.push(exam);
+      
     }
+    
+    this.setState({
+      exams: examsWithFinalDates
+    })
   }
+
+  // desc: '3º Trimestre',
+  //       since: {
+  //           display: '30 semanas',
+  //           weeks: 30
+  //       },
+  //       until: {
+  //           display: '32 semanas + 6 dias',
+  //           weeks: 32,
+  //           days: 6,
+  //       }
+
+  // getEcosByWeeks(gestationWeek) {
+  //   let ecosToShow = [];
+  //   console.log('semana ' + gestationWeek);
+
+  //   for (let i = 0; i < Constants.ecos.length; i++) {
+  //     const eco = Constants.ecos[i];
+  //     console.log("since " + eco.since);
+  //     console.log("until " + eco.until);
+
+  //     if (gestationWeek < eco.since) {
+  //       eco.status = 'request'
+
+  //       if (gestationWeek > eco.until) {
+  //         eco.status = 'done'
+  //       }
+  //       ecosToShow.push(eco);
+  //     }
+  //   }
+
+  //   this.setState({
+  //     ecos: ecosToShow
+  //   })
+  // }
+
+  // getExamsByWeeks(gestationWeek) {
+  //   let examsToShow = [];
+
+  //   for (let i = 0; i < Constants.exams.length; i++) {
+  //     const exam = Constants.exams[i];
+  //     if (gestationWeek < exam.since) {
+  //       exam.status = 'request'
+
+  //       if (gestationWeek > exam.until) {
+  //         exam.status = 'done'
+  //       }
+  //       examsToShow.push(exam);
+  //     }
+  //     this.setState({
+  //       exams: examsToShow
+  //     })
+  //   }
+  // }
 
   render() {
     return (
       <Layout>
-        {/* <Helmet title="Gatsby Starter - Stellar" /> */}
         <Helmet title = {GatsbyConfig.siteMetadata.title} />
         <Header />
         <Waypoint
