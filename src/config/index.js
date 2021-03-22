@@ -2,7 +2,6 @@ module.exports = {
     ecos: [{
         status: null,
         desc: '1º Trimestre',
-        since: 11,
         since: {
             display: '11 semanas',
             weeks: 11
@@ -43,19 +42,20 @@ module.exports = {
 
     exams: [{
         status: null,
-        desc: 'Ecografia 1º Trimestre',
+        desc: 'Analises 1º Trimestre',
         since: {
             display: '8 semanas',
             weeks: 8
         },
         until: {
-            display: '12 Semanas',
+            display: '12 Semanas + 6 dias',
             weeks: 12,
+            days: 6
         },
     },
     {
         status: null,
-        desc: 'Ecografia 2º Trimestre',
+        desc: 'Analises 2º Trimestre',
         since: {
             display: '24 semanas',
             weeks: 24
@@ -67,7 +67,7 @@ module.exports = {
     },
     {
         status: null,
-        desc: 'Ecografia 3º Trimestre',
+        desc: 'Analises 3º Trimestre',
         since: {
             display: '32 semanas',
             weeks: 32

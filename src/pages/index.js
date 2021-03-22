@@ -67,11 +67,6 @@ class Index extends React.Component {
     const diffDate = new Date() - initialDate;
     gestationWeek = Math.floor(diffDate / (1000 * 60 * 60 * 24 * 7));
 
-    this.getEcosByInitialDate(initialDate);
-
-    // this.getEcosByWeeks(gestationWeek);
-    // this.getExamsByWeeks(gestationWeek);
-
     this.setState({
       dates: currentDates,
       gestationWeek: gestationWeek,
@@ -83,16 +78,16 @@ class Index extends React.Component {
 
     for (let i = 0; i < Constants.ecos.length; i++) {
       const eco = Constants.ecos[i];
-      let dateSince = new Date();
-      dateSince.setDate(initialDate.getDate() + 7 * eco.since.weeks + (eco.since.days || 0));
-      eco.since.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+
+      let dateSince = new Date(initialDate);
+      dateSince.setDate(dateSince.getDate() + 7 * eco.since.weeks + (eco.since.days || 0));
+      eco.since.display = dateSince.getDate() + '/' + (dateSince.getMonth() + 1) + '/' + dateSince.getFullYear();
       
-      let dateUntil = new Date();
-      dateUntil.setDate(initialDate.getDate() + 7 * eco.until.weeks + (eco.until.days || 0));
-      eco.until.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+      let dateUntil = new Date(initialDate);
+      dateUntil.setDate(dateUntil.getDate() + 7 * eco.until.weeks + (eco.until.days || 0));
+      eco.until.display = dateUntil.getDate() + '/' + (dateUntil.getMonth() + 1) + '/' + dateUntil.getFullYear();
 
       ecosWithFinalDates.push(eco);
-      
     }
     
     this.setState({
@@ -105,76 +100,21 @@ class Index extends React.Component {
 
     for (let i = 0; i < Constants.exams.length; i++) {
       const exam = Constants.exams[i];
-      let dateSince = new Date();
-      dateSince.setDate(initialDate.getDate() + 7 * exam.since.weeks + (exam.since.days || 0));
-      exam.since.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+      let dateSince = new Date(initialDate);
+      dateSince.setDate(dateSince.getDate() + 7 * exam.since.weeks + (exam.since.days || 0));
+      exam.since.display = dateSince.getDate() + '/' + (dateSince.getMonth() + 1) + '/' + dateSince.getFullYear();
       
-      let dateUntil = new Date();
-      dateUntil.setDate(initialDate.getDate() + 7 * exam.until.weeks + (exam.until.days || 0));
-      exam.until.display = dateSince.getUTCDate() + '/' + (dateSince.getUTCMonth() + 1) + '/' + dateSince.getUTCFullYear();
+      let dateUntil = new Date(initialDate);
+      dateUntil.setDate(dateUntil.getDate() + 7 * exam.until.weeks + (exam.until.days || 0));
+      exam.until.display = dateUntil.getDate() + '/' + (dateUntil.getMonth() + 1) + '/' + dateUntil.getFullYear();
 
       examsWithFinalDates.push(exam);
-      
     }
     
     this.setState({
       exams: examsWithFinalDates
     })
   }
-
-  // desc: '3º Trimestre',
-  //       since: {
-  //           display: '30 semanas',
-  //           weeks: 30
-  //       },
-  //       until: {
-  //           display: '32 semanas + 6 dias',
-  //           weeks: 32,
-  //           days: 6,
-  //       }
-
-  // getEcosByWeeks(gestationWeek) {
-  //   let ecosToShow = [];
-  //   console.log('semana ' + gestationWeek);
-
-  //   for (let i = 0; i < Constants.ecos.length; i++) {
-  //     const eco = Constants.ecos[i];
-  //     console.log("since " + eco.since);
-  //     console.log("until " + eco.until);
-
-  //     if (gestationWeek < eco.since) {
-  //       eco.status = 'request'
-
-  //       if (gestationWeek > eco.until) {
-  //         eco.status = 'done'
-  //       }
-  //       ecosToShow.push(eco);
-  //     }
-  //   }
-
-  //   this.setState({
-  //     ecos: ecosToShow
-  //   })
-  // }
-
-  // getExamsByWeeks(gestationWeek) {
-  //   let examsToShow = [];
-
-  //   for (let i = 0; i < Constants.exams.length; i++) {
-  //     const exam = Constants.exams[i];
-  //     if (gestationWeek < exam.since) {
-  //       exam.status = 'request'
-
-  //       if (gestationWeek > exam.until) {
-  //         exam.status = 'done'
-  //       }
-  //       examsToShow.push(exam);
-  //     }
-  //     this.setState({
-  //       exams: examsToShow
-  //     })
-  //   }
-  // }
 
   render() {
     return (
