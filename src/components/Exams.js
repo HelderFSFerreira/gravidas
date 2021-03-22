@@ -7,7 +7,7 @@ class Exams extends React.Component {
     return (
       <div>
         <header className="major">
-          <h2>Exames</h2>
+          <h2>Análises</h2>
         </header>
         <table id='exams'>
           <thead>

@@ -42,7 +42,7 @@ module.exports = {
 
     exams: [{
         status: null,
-        desc: 'Analises 1º Trimestre',
+        desc: '1º Trimestre',
         since: {
             display: '8 semanas',
             weeks: 8
@@ -55,7 +55,7 @@ module.exports = {
     },
     {
         status: null,
-        desc: 'Analises 2º Trimestre',
+        desc: '2º Trimestre',
         since: {
             display: '24 semanas',
             weeks: 24
@@ -67,7 +67,7 @@ module.exports = {
     },
     {
         status: null,
-        desc: 'Analises 3º Trimestre',
+        desc: '3º Trimestre',
         since: {
             display: '32 semanas',
             weeks: 32
